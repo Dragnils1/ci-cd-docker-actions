@@ -1,0 +1,5 @@
+# action.yml
+
+name: 'ci-cd-docker'
+description: 'mysql + nodejs + react + docker + github actions'
+
