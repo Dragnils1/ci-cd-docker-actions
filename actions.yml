@@ -2,7 +2,11 @@
 
 name: dcoker-ci-cd
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+on:
+  push:
+    branches: [ "bubu" ]
+  pull_request:
+    branches: [ "bubu" ]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
