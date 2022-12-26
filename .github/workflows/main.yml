@@ -5,8 +5,6 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   push:
     branches: [ "bubu" ]
-  pull_request:
-    branches: [ "bubu" ]
 jobs:
 
   build-in-docker:
@@ -51,6 +49,8 @@ jobs:
   production:
     needs: test-server
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: 'prod'
     steps:
       - name: deployment
         run: echo '\033[32m deployment success \033[0m'
