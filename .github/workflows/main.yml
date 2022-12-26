@@ -1,0 +1,17 @@
+# action.yml
+
+name: dcoker-ci-cd
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  push:
+    branches: [ "bubu" ]
+  pull_request:
+    branches: [ "bubu" ]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./docker-compose.yml"
