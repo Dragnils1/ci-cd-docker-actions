@@ -26,15 +26,18 @@ jobs:
           compose-file: "./docker-compose.yml"
 
   test-mocks:
-    - name: add some mock tests
-      run: echo '\033[32m All test are success \033[0m'
+    steps:
+      - name: add some mock tests
+        run: echo '\033[32m All test are success \033[0m'
 
   test-server:
-    - name: deploy on test server
-      run: |
-        echo '\033[32m deployment on mock server success \033[0m'
-        echo 'wait confirmation'
+    steps:
+      - name: deploy on test server
+        run: |
+          echo '\033[32m deployment on mock server success \033[0m'
+          echo 'wait confirmation'
 
   production:
-    - name: deployment
-      run: echo '\033[32m deployment success \033[0m'
+    steps:
+      - name: deployment
+        run: echo '\033[32m deployment success \033[0m'
