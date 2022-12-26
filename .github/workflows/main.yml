@@ -9,7 +9,7 @@ on:
     branches: [ "bubu" ]
 jobs:
 
-  check-bats-version:
+  build-in-docker:
     runs-on: ubuntu-latest
     env:
       MYSQLDB_USER: 'root'
@@ -25,12 +25,23 @@ jobs:
         with:
           compose-file: "./docker-compose.yml"
 
-  test-mocks:
+  test-mocks-ui:
+    needs: build-in-docker
+    runs-on: ubuntu-latest
     steps:
       - name: add some mock tests
-        run: echo '\033[32m All test are success \033[0m'
+        run: echo '\033[32m All test on client are success \033[0m'
+
+  test-mocks-server:
+    needs: build-in-docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: add some mock tests
+        run: echo '\033[32m All test on server are success \033[0m'
 
   test-server:
+    needs: test-mocks-server
+    runs-on: ubuntu-latest
     steps:
       - name: deploy on test server
         run: |
@@ -38,6 +49,8 @@ jobs:
           echo 'wait confirmation'
 
   production:
+    needs: test-server
+    runs-on: ubuntu-latest
     steps:
       - name: deployment
         run: echo '\033[32m deployment success \033[0m'
